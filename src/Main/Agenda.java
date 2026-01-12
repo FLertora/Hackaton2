@@ -1,36 +1,34 @@
 package Main;
-//listas dinámicas
+
 import java.util.ArrayList;
 
-public class Agenda{
-    //lista que almacena los contactos
+public class Agenda {
+
     private ArrayList<Contacto> contactos;
-    //variable que define el número máximo de contactos
     private int tamañoMaximo;
 
-// Constructor
-    public Agenda() {this(10);}
+    public Agenda() {
+        this(10);
+    }
 
-//tamaño max
     public Agenda(int tamañoMaximo) {
         this.tamañoMaximo = tamañoMaximo;
         this.contactos = new ArrayList<>();
     }
-    // metodo que verifica si la agenda está llena
+
     public boolean agendaLlena() {
         return contactos.size() >= tamañoMaximo;
     }
-    //metodo que verifica si el contacto existe
+
     public boolean existeContacto(Contacto contacto) {
         return contactos.contains(contacto);
     }
-    //metodo que verifica si un contacto existe en la agenda
+
     public boolean añadirContacto(Contacto contacto) {
         if (agendaLlena()) {
             System.out.println("La agenda está llena");
             return false;
         }
-    //metodo que verifica si el contacto existe
         if (existeContacto(contacto)) {
             System.out.println("El contacto ya existe");
             return false;
@@ -39,12 +37,10 @@ public class Agenda{
         contactos.add(contacto);
         return true;
     }
-    //metodo para mostrar los contactos
+
     public void mostrarContactos() {
-        //verifica si la lista de contactos está vacía
         if (contactos.isEmpty()) {
             System.out.println("La agenda está vacía");
-        // Recorre la lista de contactos e imprime
         } else {
             for (Contacto c : contactos) {
                 System.out.println(c);
@@ -52,4 +48,35 @@ public class Agenda{
         }
     }
 
+    public void buscarContacto(String nombre, String apellido) {
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombre) && c.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Contacto encontrado: " + c);
+                return;
+            }
+        }
+        System.out.println("El contacto no se encuentra en la agenda.");
+    }
+
+    public void eliminarContacto(String nombre, String apellido) {
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombre) && c.getApellido().equalsIgnoreCase(apellido)) {
+                contactos.remove(c);
+                System.out.println("Contacto eliminado.");
+                return;
+            }
+        }
+        System.out.println("No se pudo eliminar, el contacto no existe.");
+    }
+
+    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombre) && c.getApellido().equalsIgnoreCase(apellido)) {
+                c.setTelefono(nuevoTelefono);
+                System.out.println("Teléfono actualizado exitosamente.");
+                return;
+            }
+        }
+        System.out.println("No se encontró el contacto para modificar.");
+    }
 }
