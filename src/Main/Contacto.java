@@ -1,21 +1,17 @@
 package Main;
 
-
 public class Contacto {
 
-    // atributos
     private String nombre;
     private String apellido;
     private String telefono;
 
-    // constructor
-    Contacto(String nombre, String apellido, String telefono){
+    public Contacto(String nombre, String apellido, String telefono){
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
     }
 
-    // getter
     public String getNombre(){
         return nombre;
     }
@@ -25,7 +21,12 @@ public class Contacto {
     public String getTelefono(){
         return telefono;
     }
-    //Aqui hacemos que Java verifique si el contacto es igual que al otro si el nombre es igual.
+
+    // Nuevo metodo necesario para modificar
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -40,5 +41,4 @@ public class Contacto {
     public String toString() {
         return nombre + " " + apellido + " - " + telefono;
     }
-
 }
